@@ -1,6 +1,8 @@
 "Eng. Ahmed Métwalli" Section 11
 
-Using docker:
+Review PDF File: Secion11_Threads_Metwalli.pdf
+
+Let's contain GCC Using docker:
 Step 1: docker pull gcc:latest
 Step 2: Navigate to the directory 
 Step 3: docker run --rm -it -v "$(pwd):/workspace" -w /workspace gcc:latest bash
