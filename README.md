@@ -1,6 +1,8 @@
 "Eng. Ahmed Métwalli" Section 11
 
-- Review PDF File: Secion11_Threads_Metwalli.pdf
+- Section 11: Review PDF File: Secion11_Threads_Metwalli.pdf
+
+- Section 12: Review PDF File: Section12_Threads_2_Metwalli.pdf
 
 - Let's contain GCC Using docker:
   - Step 1: docker pull gcc:latest
