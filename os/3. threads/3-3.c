@@ -3,33 +3,59 @@
 #include <unistd.h>
 #include <time.h>
 #include <pthread.h>
+
+// Define the number of threads
 #define NUM 12
-void* my_routine(void* raw_args){
-    char* c = (char*) raw_args; // Casting is performed through char* c = (char *c) raw_args
-    int i;
-    for(i=0;i<4;i++){
+
+// Thread routine executed by each thread
+void* my_routine(void* raw_args) {
+    // Cast the void* argument to a char* to access the thread-specific character
+    char* c = (char*) raw_args;
+
+    // Loop to simulate thread work
+    for (int i = 0; i < 4; i++) {
+        // Print the thread's character label and its progress
         printf("%c: %d\n", *c, i);
-        usleep(rand() % (1000 * 1000));     //fake random computation delay
+
+        // Introduce a random delay to simulate variable task durations
+        usleep(rand() % (1000 * 1000)); // Sleep for up to 1 second
     }
-    return NULL;
+
+    return NULL; // Return NULL to indicate successful execution
 }
-int main(){
+
+int main() {
+    // Seed the random number generator
     srand(time(0));
+
+    // Array to hold thread IDs
     pthread_t tids[NUM];
-    char labels[NUM];
-    int t;
-    for(t=0;t<NUM;t++){
-        labels[t] = 'A' + t;   //'A'+0='A', 'A'+1='B'
+
+    // Array to hold labels for each thread
+    char labels[NUM]; // A, B, C and etc ..
+
+    // Create NUM threads
+    for (int t = 0; t < NUM; t++) {
+        // Assign a unique label to each thread ('A', 'B', ..., 'L')
+        labels[t] = 'A' + t;
+
+        // Create the thread, passing its specific label as an argument
         pthread_create(&tids[t], NULL, my_routine, &labels[t]);
     }
-    int i;
-    for(i=0;i<4;i++){
+
+    // Main thread performs its own task
+    for (int i = 0; i < 4; i++) {
+        // Print the main thread's progress
         printf("main: %d\n", i);
-        usleep(rand() % (1000 * 1000));
+
+        // Introduce a random delay to simulate work
+        usleep(rand() % (1000 * 1000)); // Sleep for up to 1 second
     }
-    // wait for threads one by one
-    for(i=0;i<NUM;i++){
-        pthread_join(tids[i], NULL);
+
+    // Wait for all threads to finish
+    for (int i = 0; i < NUM; i++) {
+        pthread_join(tids[i], NULL); // Block until thread i finishes
     }
-    return 0;
+
+    return 0; // Indicate successful program termination
 }
