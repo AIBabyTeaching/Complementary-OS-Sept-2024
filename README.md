@@ -4,10 +4,12 @@
 
 - Section 12: Review PDF File: Section12_Threads_2_Metwalli.pdf
 
+- Section 13: Review PDF File: Section13_Semaphone_1_Metwalli.pdf
+
 - Let's contain GCC Using docker:
   - Step 1: docker pull gcc:latest
   - Step 2: Navigate to the directory 
   - Step 3: docker run --rm -it -v "$(pwd):/workspace" -w /workspace gcc:latest bash
-  - Step 4: Navigate to relevant folder then 
+  - Step 4: Navigate to relevant folder then for example:
   - Step 5: gcc 3-1.c -o 3-1
   - Step 6: ./3-1
